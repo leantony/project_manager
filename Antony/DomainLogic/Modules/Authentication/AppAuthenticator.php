@@ -11,13 +11,6 @@ abstract class AppAuthenticator
     use oauth2Authenticator;
 
     /**
-     * Status of an authentication request. For non API calls only
-     *
-     * @var string
-     */
-    protected $authStatus;
-
-    /**
      * Socialite implementation
      *
      * @var Socialite

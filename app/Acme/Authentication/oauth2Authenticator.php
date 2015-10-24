@@ -106,7 +106,7 @@ trait oauth2Authenticator
         $email = $api_user->getEmail();
 
         // check if the account exists on our server
-        $user = UserRepo::whereEmail('email', $email)->get();
+        $user = UserRepo::where('email', $email)->first();
 
         if (empty($user)) {
 

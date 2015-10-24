@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\projects;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\models\Projects;
+use App\models\UserProjects;
 use GrahamCampbell\GitHub\GitHubManager;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class ProjectsController extends Controller
 {
@@ -15,7 +17,8 @@ class ProjectsController extends Controller
      */
     private $github;
 
-    public function __construct(GitHubManager $github){
+    public function __construct(GitHubManager $github)
+    {
 
         $this->github = $github;
     }
@@ -29,7 +32,35 @@ class ProjectsController extends Controller
     {
         $data = $this->github->me()->repositories();
 
-        dd($data);
+        foreach ($data as $value) {
+            $p_name = array_get($value, 'name');
+            $p_slug = array_get($value, 'full_name');
+            $p_desc = array_get($value, 'description');
+            $p_owner = array_get(array_get($value, 'owner'), 'login');
+
+            $project = Projects::create([
+                'name' => $p_name,
+                'slug' => $p_slug,
+                'description' => $p_desc
+            ]);
+
+            $collaborators = $this->github->getHttpClient()->get("/repos/{$p_owner}/{$p_name}/collaborators")->json();
+
+            foreach ($collaborators as $project_user) {
+
+                UserProjects::create([
+                    'project_id' => $project->id,
+                    'email' => array_get($project_user, 'email'),
+                    'username' => array_get($project_user, 'login')
+                ]);
+            }
+
+        }
+
+        $projects = Projects::all();
+
+        return view('projects.view', compact('projects'));
+
     }
 
     /**
@@ -45,7 +76,7 @@ class ProjectsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +88,7 @@ class ProjectsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -68,7 +99,7 @@ class ProjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -79,8 +110,8 @@ class ProjectsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -91,7 +122,7 @@ class ProjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

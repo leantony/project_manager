@@ -39,18 +39,18 @@ return [
     'connections' => [
 
         'main' => [
-            'token'   => 'your-token',
+            'token'   => env('GITHUB_API_TOKEN'),
             'method'  => 'token',
-            // 'baseUrl' => 'https://api.github.com/',
-            // 'version' => 'v3',
+             'baseUrl' => 'https://api.github.com/',
+             'version' => 'v3',
         ],
 
         'alternative' => [
             'clientId'     => env('GITHUB_APP_ID'),
             'clientSecret' => env('GITHUB_API_KEY'),
             'method'       => 'application',
-            // 'baseUrl'      => 'https://api.github.com/',
-            // 'version'      => 'v3',
+             'baseUrl'      => 'https://api.github.com/',
+             'version'      => 'v3',
         ],
 
         'other' => [

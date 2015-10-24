@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.1.20 (LTS) on 2015-10-23.
+ * Generated for Laravel 5.1.20 (LTS) on 2015-10-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12119,6 +12119,935 @@ namespace {
          */
         public static function getNames(){
             return \Illuminate\View\Factory::getNames();
+        }
+        
+    }
+
+
+    class API extends \Dingo\Api\Facade\API{
+        
+        /**
+         * Attach files to be uploaded.
+         *
+         * @param array $files
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function attach($files){
+            return \Dingo\Api\Dispatcher::attach($files);
+        }
+        
+        /**
+         * Internal request will be authenticated as the given user.
+         *
+         * @param mixed $user
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function be($user){
+            return \Dingo\Api\Dispatcher::be($user);
+        }
+        
+        /**
+         * Send a JSON payload in the request body.
+         *
+         * @param string|array $content
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function json($content){
+            return \Dingo\Api\Dispatcher::json($content);
+        }
+        
+        /**
+         * Sets the domain to be used for the request.
+         *
+         * @param string $domain
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function on($domain){
+            return \Dingo\Api\Dispatcher::on($domain);
+        }
+        
+        /**
+         * Return the raw response object once request is dispatched.
+         *
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function raw(){
+            return \Dingo\Api\Dispatcher::raw();
+        }
+        
+        /**
+         * Only authenticate with the given user for a single request.
+         *
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function once(){
+            return \Dingo\Api\Dispatcher::once();
+        }
+        
+        /**
+         * Set the version of the API for the next request.
+         *
+         * @param string $version
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function version($version){
+            return \Dingo\Api\Dispatcher::version($version);
+        }
+        
+        /**
+         * Set the parameters to be sent on the next API request.
+         *
+         * @param string|array $parameters
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function with($parameters){
+            return \Dingo\Api\Dispatcher::with($parameters);
+        }
+        
+        /**
+         * Set a header to be sent on the next API request.
+         *
+         * @param string $key
+         * @param string $value
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function header($key, $value){
+            return \Dingo\Api\Dispatcher::header($key, $value);
+        }
+        
+        /**
+         * Set a cookie to be sent on the next API request.
+         *
+         * @param \Symfony\Component\HttpFoundation\Cookie $cookie
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */
+        public static function cookie($cookie){
+            return \Dingo\Api\Dispatcher::cookie($cookie);
+        }
+        
+        /**
+         * Perform API GET request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @return mixed 
+         * @static 
+         */
+        public static function get($uri, $parameters = array()){
+            return \Dingo\Api\Dispatcher::get($uri, $parameters);
+        }
+        
+        /**
+         * Perform API POST request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */
+        public static function post($uri, $parameters = array(), $content = ''){
+            return \Dingo\Api\Dispatcher::post($uri, $parameters, $content);
+        }
+        
+        /**
+         * Perform API PUT request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */
+        public static function put($uri, $parameters = array(), $content = ''){
+            return \Dingo\Api\Dispatcher::put($uri, $parameters, $content);
+        }
+        
+        /**
+         * Perform API PATCH request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */
+        public static function patch($uri, $parameters = array(), $content = ''){
+            return \Dingo\Api\Dispatcher::patch($uri, $parameters, $content);
+        }
+        
+        /**
+         * Perform API DELETE request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */
+        public static function delete($uri, $parameters = array(), $content = ''){
+            return \Dingo\Api\Dispatcher::delete($uri, $parameters, $content);
+        }
+        
+        /**
+         * Get the domain.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDomain(){
+            return \Dingo\Api\Dispatcher::getDomain();
+        }
+        
+        /**
+         * Get the version.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getVersion(){
+            return \Dingo\Api\Dispatcher::getVersion();
+        }
+        
+        /**
+         * Get the format.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getFormat(){
+            return \Dingo\Api\Dispatcher::getFormat();
+        }
+        
+        /**
+         * Get the vendor.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getVendor(){
+            return \Dingo\Api\Dispatcher::getVendor();
+        }
+        
+        /**
+         * Set the vendor.
+         *
+         * @param string $vendor
+         * @return void 
+         * @static 
+         */
+        public static function setVendor($vendor){
+            \Dingo\Api\Dispatcher::setVendor($vendor);
+        }
+        
+        /**
+         * Set the prefix.
+         *
+         * @param string $prefix
+         * @return void 
+         * @static 
+         */
+        public static function setPrefix($prefix){
+            \Dingo\Api\Dispatcher::setPrefix($prefix);
+        }
+        
+        /**
+         * Set the default version.
+         *
+         * @param string $version
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultVersion($version){
+            \Dingo\Api\Dispatcher::setDefaultVersion($version);
+        }
+        
+        /**
+         * Set the default domain.
+         *
+         * @param string $domain
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultDomain($domain){
+            \Dingo\Api\Dispatcher::setDefaultDomain($domain);
+        }
+        
+        /**
+         * Set the defult format.
+         *
+         * @param string $format
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultFormat($format){
+            \Dingo\Api\Dispatcher::setDefaultFormat($format);
+        }
+        
+    }
+
+
+    class APIRouter extends \Dingo\Api\Facade\Route{
+        
+        /**
+         * An alias for calling the group method, allows a more fluent API
+         * for registering a new API version group with optional
+         * attributes and a required callback.
+         * 
+         * This method can be called without the third parameter, however,
+         * the callback should always be the last paramter.
+         *
+         * @param string $version
+         * @param array|callable $second
+         * @param callable $third
+         * @return void 
+         * @static 
+         */
+        public static function version($version, $second, $third = null){
+            \Dingo\Api\Routing\Router::version($version, $second, $third);
+        }
+        
+        /**
+         * Create a new route group.
+         *
+         * @param array $attributes
+         * @param callable $callback
+         * @return void 
+         * @static 
+         */
+        public static function group($attributes, $callback){
+            \Dingo\Api\Routing\Router::group($attributes, $callback);
+        }
+        
+        /**
+         * Create a new GET route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */
+        public static function get($uri, $action){
+            return \Dingo\Api\Routing\Router::get($uri, $action);
+        }
+        
+        /**
+         * Create a new POST route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */
+        public static function post($uri, $action){
+            return \Dingo\Api\Routing\Router::post($uri, $action);
+        }
+        
+        /**
+         * Create a new PUT route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */
+        public static function put($uri, $action){
+            return \Dingo\Api\Routing\Router::put($uri, $action);
+        }
+        
+        /**
+         * Create a new PATCH route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */
+        public static function patch($uri, $action){
+            return \Dingo\Api\Routing\Router::patch($uri, $action);
+        }
+        
+        /**
+         * Create a new DELETE route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */
+        public static function delete($uri, $action){
+            return \Dingo\Api\Routing\Router::delete($uri, $action);
+        }
+        
+        /**
+         * Create a new OPTIONS route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */
+        public static function options($uri, $action){
+            return \Dingo\Api\Routing\Router::options($uri, $action);
+        }
+        
+        /**
+         * Register an array of resources.
+         *
+         * @param array $resources
+         * @return void 
+         * @static 
+         */
+        public static function resources($resources){
+            \Dingo\Api\Routing\Router::resources($resources);
+        }
+        
+        /**
+         * Register a resource controller.
+         *
+         * @param string $name
+         * @param string $controller
+         * @param array $options
+         * @return void 
+         * @static 
+         */
+        public static function resource($name, $controller, $options = array()){
+            \Dingo\Api\Routing\Router::resource($name, $controller, $options);
+        }
+        
+        /**
+         * Register an array of controllers.
+         *
+         * @param array $controllers
+         * @return void 
+         * @static 
+         */
+        public static function controllers($controllers){
+            \Dingo\Api\Routing\Router::controllers($controllers);
+        }
+        
+        /**
+         * Register a controller.
+         *
+         * @param string $uri
+         * @param string $controller
+         * @param array $names
+         * @return void 
+         * @static 
+         */
+        public static function controller($uri, $controller, $names = array()){
+            \Dingo\Api\Routing\Router::controller($uri, $controller, $names);
+        }
+        
+        /**
+         * Add a route to the routing adapter.
+         *
+         * @param string|array $methods
+         * @param string $uri
+         * @param string|array|callable $action
+         * @return mixed 
+         * @static 
+         */
+        public static function addRoute($methods, $uri, $action){
+            return \Dingo\Api\Routing\Router::addRoute($methods, $uri, $action);
+        }
+        
+        /**
+         * Dispatch a request via the adapter.
+         *
+         * @param \Dingo\Api\Http\Request $request
+         * @return \Dingo\Api\Http\Response 
+         * @static 
+         */
+        public static function dispatch($request){
+            return \Dingo\Api\Routing\Router::dispatch($request);
+        }
+        
+        /**
+         * Set the conditional request.
+         *
+         * @param bool $conditionalRequest
+         * @return void 
+         * @static 
+         */
+        public static function setConditionalRequest($conditionalRequest){
+            \Dingo\Api\Routing\Router::setConditionalRequest($conditionalRequest);
+        }
+        
+        /**
+         * Get the current request instance.
+         *
+         * @return \Dingo\Api\Http\Request 
+         * @static 
+         */
+        public static function getCurrentRequest(){
+            return \Dingo\Api\Routing\Router::getCurrentRequest();
+        }
+        
+        /**
+         * Get the current route instance.
+         *
+         * @return \Dingo\Api\Routing\Route 
+         * @static 
+         */
+        public static function getCurrentRoute(){
+            return \Dingo\Api\Routing\Router::getCurrentRoute();
+        }
+        
+        /**
+         * Get the currently dispatched route instance.
+         *
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function current(){
+            return \Dingo\Api\Routing\Router::current();
+        }
+        
+        /**
+         * Create a new route instance from an adapter route.
+         *
+         * @param array|\Illuminate\Routing\Route $route
+         * @return \Dingi\Api\Routing\Route 
+         * @static 
+         */
+        public static function createRoute($route){
+            return \Dingo\Api\Routing\Router::createRoute($route);
+        }
+        
+        /**
+         * Set the current route instance.
+         *
+         * @param \Dingo\Api\Routing\Route $route
+         * @return void 
+         * @static 
+         */
+        public static function setCurrentRoute($route){
+            \Dingo\Api\Routing\Router::setCurrentRoute($route);
+        }
+        
+        /**
+         * Determine if the router has a group stack.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasGroupStack(){
+            return \Dingo\Api\Routing\Router::hasGroupStack();
+        }
+        
+        /**
+         * Get the prefix from the last group on the stack.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getLastGroupPrefix(){
+            return \Dingo\Api\Routing\Router::getLastGroupPrefix();
+        }
+        
+        /**
+         * Get all routes registered on the adapter.
+         *
+         * @param string $version
+         * @return mixed 
+         * @static 
+         */
+        public static function getRoutes($version = null){
+            return \Dingo\Api\Routing\Router::getRoutes($version);
+        }
+        
+        /**
+         * Get the raw adapter routes.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getAdapterRoutes(){
+            return \Dingo\Api\Routing\Router::getAdapterRoutes();
+        }
+        
+        /**
+         * Set the raw adapter routes.
+         *
+         * @param array $routes
+         * @return void 
+         * @static 
+         */
+        public static function setAdapterRoutes($routes){
+            \Dingo\Api\Routing\Router::setAdapterRoutes($routes);
+        }
+        
+        /**
+         * Get the number of routes dispatched.
+         *
+         * @return int 
+         * @static 
+         */
+        public static function getRoutesDispatched(){
+            return \Dingo\Api\Routing\Router::getRoutesDispatched();
+        }
+        
+        /**
+         * Determine if the router has dispatched any routes.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasDispatchedRoutes(){
+            return \Dingo\Api\Routing\Router::hasDispatchedRoutes();
+        }
+        
+        /**
+         * Get the current route name.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function currentRouteName(){
+            return \Dingo\Api\Routing\Router::currentRouteName();
+        }
+        
+        /**
+         * Alias for the "currentRouteNamed" method.
+         *
+         * @param mixed  string
+         * @return bool 
+         * @static 
+         */
+        public static function is(){
+            return \Dingo\Api\Routing\Router::is();
+        }
+        
+        /**
+         * Determine if the current route matches a given name.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function currentRouteNamed($name){
+            return \Dingo\Api\Routing\Router::currentRouteNamed($name);
+        }
+        
+        /**
+         * Get the current route action.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function currentRouteAction(){
+            return \Dingo\Api\Routing\Router::currentRouteAction();
+        }
+        
+        /**
+         * Alias for the "currentRouteUses" method.
+         *
+         * @param mixed  string
+         * @return bool 
+         * @static 
+         */
+        public static function uses(){
+            return \Dingo\Api\Routing\Router::uses();
+        }
+        
+        /**
+         * Determine if the current route action matches a given action.
+         *
+         * @param string $action
+         * @return bool 
+         * @static 
+         */
+        public static function currentRouteUses($action){
+            return \Dingo\Api\Routing\Router::currentRouteUses($action);
+        }
+        
+    }
+
+
+    class JWTAuth extends \Tymon\JWTAuth\Facades\JWTAuth{
+        
+        /**
+         * Find a user using the user identifier in the subject claim.
+         *
+         * @param bool|string $token
+         * @return mixed 
+         * @static 
+         */
+        public static function toUser($token = false){
+            return \Tymon\JWTAuth\JWTAuth::toUser($token);
+        }
+        
+        /**
+         * Generate a token using the user identifier as the subject claim.
+         *
+         * @param mixed $user
+         * @param array $customClaims
+         * @return string 
+         * @static 
+         */
+        public static function fromUser($user, $customClaims = array()){
+            return \Tymon\JWTAuth\JWTAuth::fromUser($user, $customClaims);
+        }
+        
+        /**
+         * Attempt to authenticate the user and return the token.
+         *
+         * @param array $credentials
+         * @param array $customClaims
+         * @return false|string 
+         * @static 
+         */
+        public static function attempt($credentials = array(), $customClaims = array()){
+            return \Tymon\JWTAuth\JWTAuth::attempt($credentials, $customClaims);
+        }
+        
+        /**
+         * Authenticate a user via a token.
+         *
+         * @param mixed $token
+         * @return mixed 
+         * @static 
+         */
+        public static function authenticate($token = false){
+            return \Tymon\JWTAuth\JWTAuth::authenticate($token);
+        }
+        
+        /**
+         * Refresh an expired token.
+         *
+         * @param mixed $token
+         * @return string 
+         * @static 
+         */
+        public static function refresh($token = false){
+            return \Tymon\JWTAuth\JWTAuth::refresh($token);
+        }
+        
+        /**
+         * Invalidate a token (add it to the blacklist).
+         *
+         * @param mixed $token
+         * @return boolean 
+         * @static 
+         */
+        public static function invalidate($token = false){
+            return \Tymon\JWTAuth\JWTAuth::invalidate($token);
+        }
+        
+        /**
+         * Get the token.
+         *
+         * @return boolean|string 
+         * @static 
+         */
+        public static function getToken(){
+            return \Tymon\JWTAuth\JWTAuth::getToken();
+        }
+        
+        /**
+         * Get the raw Payload instance.
+         *
+         * @param mixed $token
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */
+        public static function getPayload($token = false){
+            return \Tymon\JWTAuth\JWTAuth::getPayload($token);
+        }
+        
+        /**
+         * Parse the token from the request.
+         *
+         * @param string $query
+         * @return \Tymon\JWTAuth\JWTAuth 
+         * @static 
+         */
+        public static function parseToken($method = 'bearer', $header = 'authorization', $query = 'token'){
+            return \Tymon\JWTAuth\JWTAuth::parseToken($method, $header, $query);
+        }
+        
+        /**
+         * Set the identifier.
+         *
+         * @param string $identifier
+         * @return $this 
+         * @static 
+         */
+        public static function setIdentifier($identifier){
+            return \Tymon\JWTAuth\JWTAuth::setIdentifier($identifier);
+        }
+        
+        /**
+         * Get the identifier.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getIdentifier(){
+            return \Tymon\JWTAuth\JWTAuth::getIdentifier();
+        }
+        
+        /**
+         * Set the token.
+         *
+         * @param string $token
+         * @return $this 
+         * @static 
+         */
+        public static function setToken($token){
+            return \Tymon\JWTAuth\JWTAuth::setToken($token);
+        }
+        
+        /**
+         * Set the request instance.
+         *
+         * @param \Tymon\JWTAuth\Request $request
+         * @static 
+         */
+        public static function setRequest($request){
+            return \Tymon\JWTAuth\JWTAuth::setRequest($request);
+        }
+        
+        /**
+         * Get the JWTManager instance.
+         *
+         * @return \Tymon\JWTAuth\JWTManager 
+         * @static 
+         */
+        public static function manager(){
+            return \Tymon\JWTAuth\JWTAuth::manager();
+        }
+        
+    }
+
+
+    class JWTFactory extends \Tymon\JWTAuth\Facades\JWTFactory{
+        
+        /**
+         * Create the Payload instance
+         *
+         * @param array $customClaims
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */
+        public static function make($customClaims = array()){
+            return \Tymon\JWTAuth\PayloadFactory::make($customClaims);
+        }
+        
+        /**
+         * Add an array of claims to the Payload
+         *
+         * @param array $claims
+         * @return $this 
+         * @static 
+         */
+        public static function addClaims($claims){
+            return \Tymon\JWTAuth\PayloadFactory::addClaims($claims);
+        }
+        
+        /**
+         * Add a claim to the Payload
+         *
+         * @param string $name
+         * @param mixed $value
+         * @return $this 
+         * @static 
+         */
+        public static function addClaim($name, $value){
+            return \Tymon\JWTAuth\PayloadFactory::addClaim($name, $value);
+        }
+        
+        /**
+         * Build out the Claim DTO's
+         *
+         * @return array 
+         * @static 
+         */
+        public static function resolveClaims(){
+            return \Tymon\JWTAuth\PayloadFactory::resolveClaims();
+        }
+        
+        /**
+         * Set the Issuer (iss) claim
+         *
+         * @return string 
+         * @static 
+         */
+        public static function iss(){
+            return \Tymon\JWTAuth\PayloadFactory::iss();
+        }
+        
+        /**
+         * Set the Issued At (iat) claim
+         *
+         * @return int 
+         * @static 
+         */
+        public static function iat(){
+            return \Tymon\JWTAuth\PayloadFactory::iat();
+        }
+        
+        /**
+         * Set the Expiration (exp) claim
+         *
+         * @return int 
+         * @static 
+         */
+        public static function exp(){
+            return \Tymon\JWTAuth\PayloadFactory::exp();
+        }
+        
+        /**
+         * Set the Not Before (nbf) claim
+         *
+         * @return int 
+         * @static 
+         */
+        public static function nbf(){
+            return \Tymon\JWTAuth\PayloadFactory::nbf();
+        }
+        
+        /**
+         * Set the token ttl (in minutes)
+         *
+         * @param int $ttl
+         * @return $this 
+         * @static 
+         */
+        public static function setTTL($ttl){
+            return \Tymon\JWTAuth\PayloadFactory::setTTL($ttl);
+        }
+        
+        /**
+         * Get the token ttl
+         *
+         * @return int 
+         * @static 
+         */
+        public static function getTTL(){
+            return \Tymon\JWTAuth\PayloadFactory::getTTL();
+        }
+        
+        /**
+         * Set the refresh flow
+         *
+         * @param boolean $refreshFlow
+         * @return $this 
+         * @static 
+         */
+        public static function setRefreshFlow($refreshFlow = true){
+            return \Tymon\JWTAuth\PayloadFactory::setRefreshFlow($refreshFlow);
         }
         
     }

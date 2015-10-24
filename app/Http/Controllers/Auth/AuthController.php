@@ -27,7 +27,7 @@ class AuthController extends Controller
      */
     public function __construct(AppAuthenticator $authenticateUser, Request $request)
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('jwt.auth', ['except' => 'LoginViaAPI']);
 
         $this->auth = $authenticateUser;
         $this->request = $request;
@@ -75,7 +75,7 @@ class AuthController extends Controller
     {
         $data = $this->auth->login($request->except('_token'));
 
-        return redirect()->intended();
+        return is_null($data) ? redirect()->back() : redirect()->intended();
     }
 
     /**
@@ -86,5 +86,14 @@ class AuthController extends Controller
     public function postRegister(Request $request)
     {
         return $this->auth->apiAuth($request);
+    }
+
+    /**
+     * @param UserLogin $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function LoginViaApi(UserLogin $request){
+
+        return $this->auth->generateWebToken($request->except('_token'));
     }
 }

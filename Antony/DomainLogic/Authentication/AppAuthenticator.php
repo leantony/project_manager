@@ -1,12 +1,14 @@
 <?php namespace app\Antony\DomainLogic\Modules\Authentication;
 
-use app\Antony\DomainLogic\Modules\Authentication\Traits\oauth2Authenticator;
+use app\Antony\DomainLogic\Authentication\Traits\oauth2Authenticator;
 use App\models\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Session\Store;
+use JWTAuth;
 use Laravel\Socialite\Contracts\Factory as Socialite;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
-abstract class AppAuthenticator
+class AppAuthenticator
 {
     use oauth2Authenticator;
 
@@ -91,6 +93,27 @@ abstract class AppAuthenticator
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param array $credentials
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function generateWebToken(array $credentials)
+    {
+
+        try {
+            // verify the credentials and create a token for the user
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'Invalid credentials provided'], 401);
+            }
+        } catch (JWTException $e) {
+            // something went wrong
+            return response()->json(['error' => 'OOps something happened'], 500);
+        }
+
+        // if no errors are encountered we can return a JWT
+        return response()->json(compact('token'));
     }
 
     /**

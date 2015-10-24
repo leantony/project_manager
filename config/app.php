@@ -149,7 +149,9 @@ return [
          * Vendor
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        //Dingo\Api\Provider\LaravelServiceProvider::class
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
+
     ],
 
     /*
@@ -203,7 +205,9 @@ return [
          * Vendor
          */
         'API' => Dingo\Api\Facade\API::class,
-        'APIRouter' => Dingo\Api\Facade\Route::class
+        'APIRouter' => Dingo\Api\Facade\Route::class,
+        'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
     ],
 
 ];

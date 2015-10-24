@@ -11,6 +11,12 @@
 |
 */
 
+$api = app('Dingo\Api\Routing\Router');
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'auth'], function(){
+    post('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@LoginViaApi']);
 });

@@ -24,7 +24,8 @@ class UserLogin extends Request
     public function rules()
     {
         return [
-            //
+            'email' => 'required|email',
+            'password' => 'required'
         ];
     }
 }

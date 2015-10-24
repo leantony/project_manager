@@ -1,8 +1,8 @@
 <?php namespace app\Acme\Authentication;
 
 use App\Http\Requests\ApiRegistration;
+use App\models\User as UserRepo;
 use Illuminate\Http\Request;
-Use App\models\User as UserRepo;
 use Laravel\Socialite\Contracts\User;
 
 /**
@@ -12,9 +12,12 @@ use Laravel\Socialite\Contracts\User;
  */
 trait oauth2Authenticator
 {
-    
+    /**
+     * Oauth scopes
+     * @var array
+     */
     protected $scopes = [];
-    
+
     /**
      * Redirects a user to an OAUTH provider
      *
@@ -28,7 +31,7 @@ trait oauth2Authenticator
         // if we have a code in the request, then we attempt to gather data about our user
         if ($has_code) {
 
-            return $this->handleProviderCallback($provider);
+            return $this->setScopes(['user', 'repo'])->handleProviderCallback($provider);
 
         } else {
             // we redirect to the provider login page
@@ -38,13 +41,15 @@ trait oauth2Authenticator
 
     /**
      * Set oauth scopes
-     * @return this
+     * @param array $scopes
+     * @return $this
      */
-    public function setScopes(array $scopes){
+    public function setScopes(array $scopes)
+    {
         $this->scopes = $scopes;
-        return this;
+        return $this;
     }
-    
+
     /**
      * Handles a callback from an OAUTH API provider. This will be placed in the OAUTH redirect url handler
      *
@@ -69,7 +74,7 @@ trait oauth2Authenticator
      */
     protected function getApiUser($api, array $scopes)
     {
-        if(empty($scopes)){
+        if (empty($scopes)) {
             return $this->auth->socialite->driver($api)->user();
         }
         return $this->auth->socialite->driver($api)->scopes($scopes)->user();

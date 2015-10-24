@@ -1,4 +1,4 @@
-<?php namespace app\Antony\DomainLogic\Authentication\Traits;
+<?php namespace app\Acme\Authentication;
 
 use App\Http\Requests\ApiRegistration;
 use Illuminate\Http\Request;

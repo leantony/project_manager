@@ -1,4 +1,4 @@
-<?php namespace app\Antony\DomainLogic\Modules\Authentication;
+<?php namespace app\Antony\DomainLogic\Authentication;
 
 use app\Antony\DomainLogic\Authentication\Traits\oauth2Authenticator;
 use App\models\User;

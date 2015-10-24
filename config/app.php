@@ -152,7 +152,7 @@ return [
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-
+        GrahamCampbell\GitHub\GitHubServiceProvider::class
     ],
 
     /*
@@ -209,7 +209,9 @@ return [
         'APIRouter' => Dingo\Api\Facade\Route::class,
         'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Socialize' => Laravel\Socialite\SocialiteServiceProvider::class
+        'Socialize' => Laravel\Socialite\SocialiteServiceProvider::class,
+        'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class
+
     ],
 
 ];

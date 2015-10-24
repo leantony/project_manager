@@ -27,7 +27,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        $data = $this->github->me()->repositories();
+
+        dd($data);
     }
 
     /**

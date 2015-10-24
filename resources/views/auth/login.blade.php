@@ -4,7 +4,7 @@
 <div class="col-sm-4 col-sm-offset-4" style="margin-top: 20px;">
     <div class="well">
         <h3>Login/register</h3>
-        <a href="#">
+        <a href="{{ route('auth.loginUsingAPI', ['api' => 'github']) }}">
             Login/register using github
         </a>
         <form action="{{ route('auth.login') }}">

@@ -60,13 +60,11 @@ class User extends \Eloquent implements AuthenticatableContract, AuthorizableCon
     protected function getUserData(SocialiteUser $user, $params)
     {
 
-        $user_data = $user->map($user->user);
+        //$user_data = $user->map($user->user);
 
         return [
-
-            'avatar' => $user_data->avatar,
+            'name' => $user->getNickname(),
             'email' => $user->getEmail(),
-            'gender' => $user_data->gender,
             'password' => app('hash')->make($params['password']),
         ];
     }

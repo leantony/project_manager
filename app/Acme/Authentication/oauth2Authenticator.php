@@ -5,6 +5,11 @@ use Illuminate\Http\Request;
 Use App\models\User as UserRepo;
 use Laravel\Socialite\Contracts\User;
 
+/**
+ * Class oauth2Authenticator
+ * Wrapper around socialite
+ * @package app\Acme\Authentication
+ */
 trait oauth2Authenticator
 {
     /**
@@ -37,7 +42,7 @@ trait oauth2Authenticator
      */
     public function handleProviderCallback($api)
     {
-        $user = $this->getApiUser($api, null);
+        $user = $this->getApiUser($api, []);
 
         return $user;
     }
@@ -53,9 +58,9 @@ trait oauth2Authenticator
     protected function getApiUser($api, array $scopes)
     {
         if(empty($scopes)){
-            return $this->socialite->driver($api)->user();
+            return $this->auth->socialite->driver($api)->user();
         }
-        return $this->socialite->driver($api)->scopes($scopes)->user();
+        return $this->auth->socialite->driver($api)->scopes($scopes)->user();
     }
 
     /**
@@ -66,7 +71,7 @@ trait oauth2Authenticator
      */
     private function getAuthorizationFirst($provider)
     {
-        return $this->socialite->driver($provider)->redirect();
+        return $this->auth->socialite->driver($provider)->redirect();
     }
 
     /**
@@ -84,9 +89,9 @@ trait oauth2Authenticator
         $email = $api_user->getEmail();
 
         // check if the account exists on our server
-        $user = UserRepo::where('email', $email);
+        $user = UserRepo::whereEmail('email', $email)->get();
 
-        if (is_null($user)) {
+        if ($user->isEmpty()) {
 
             if ($createNew) {
 
@@ -101,7 +106,7 @@ trait oauth2Authenticator
         } else {
 
             // login the user
-            $this->login($user, true);
+            $this->auth->login($user, true);
 
             return redirect()->intended(session('url.intended', '/'));
         }
@@ -117,7 +122,7 @@ trait oauth2Authenticator
     {
         $user = (new UserRepo())->createUserUsingDataFromAPI($request->getSession()->get('api_user_data'), $request->all());
 
-        $this->login($user, true);
+        auth()->login($user, true);
 
         app('session')->pull('api_user_data');
 
@@ -132,7 +137,7 @@ trait oauth2Authenticator
      */
     public function apiAuth(Request $request)
     {
-        $provider = $request->get('provider');
+        $provider = $request->get('api');
 
         // store used api in the current session
         $request->getSession()->set('oauth_api', $provider);
@@ -163,7 +168,7 @@ trait oauth2Authenticator
     {
         $user = $request->getSession()->get('api_user_data');
 
-        return view('auth.fillRemaining', compact('user'));
+        return view('auth.fill_remaining', compact('user'));
     }
 
 
@@ -177,6 +182,6 @@ trait oauth2Authenticator
     {
         return $request->getSession()->has('api_user_data')
             ? $this->createAccount($request)
-            : redirect()->route('login');
+            : redirect()->route('auth.login');
     }
 }

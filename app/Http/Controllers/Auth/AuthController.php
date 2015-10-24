@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use app\Acme\Authentication\AppAuthenticator;
+use app\Acme\Authentication\oauth2Authenticator;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLogin;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     //use ThrottlesLogins;
+
+    use oauth2Authenticator;
 
     /**
      * @var AppAuthenticator
@@ -27,7 +30,7 @@ class AuthController extends Controller
      */
     public function __construct(AppAuthenticator $authenticateUser, Request $request)
     {
-        $this->middleware('jwt.auth', ['except' => 'LoginViaAPI', 'getLogin']);
+       // $this->middleware('jwt.auth', ['except' => 'LoginViaAPI', 'getLogin']);
 
         $this->auth = $authenticateUser;
         $this->request = $request;

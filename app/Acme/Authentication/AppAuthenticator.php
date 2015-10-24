@@ -7,16 +7,19 @@ use JWTAuth;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
+/**
+ * Class AppAuthenticator
+ * @package app\Acme\Authentication
+ */
 class AppAuthenticator
 {
-    use oauth2Authenticator;
 
     /**
      * Socialite implementation
      *
      * @var Socialite
      */
-    protected $socialite;
+    public $socialite;
 
     /**
      * Authenticator implementation

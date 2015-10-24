@@ -12,6 +12,9 @@ use Laravel\Socialite\Contracts\User;
  */
 trait oauth2Authenticator
 {
+    
+    protected $scopes = [];
+    
     /**
      * Redirects a user to an OAUTH provider
      *
@@ -34,6 +37,15 @@ trait oauth2Authenticator
     }
 
     /**
+     * Set oauth scopes
+     * @return this
+     */
+    public function setScopes(array $scopes){
+        $this->scopes = $scopes;
+        return this;
+    }
+    
+    /**
      * Handles a callback from an OAUTH API provider. This will be placed in the OAUTH redirect url handler
      *
      * @param $api
@@ -42,7 +54,7 @@ trait oauth2Authenticator
      */
     public function handleProviderCallback($api)
     {
-        $user = $this->getApiUser($api, []);
+        $user = $this->getApiUser($api, empty($this->scopes) ? [] : $this->scopes);
 
         return $user;
     }
@@ -91,7 +103,7 @@ trait oauth2Authenticator
         // check if the account exists on our server
         $user = UserRepo::whereEmail('email', $email)->get();
 
-        if ($user->isEmpty()) {
+        if (empty($user)) {
 
             if ($createNew) {
 

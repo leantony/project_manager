@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers\projects;
 
+use GrahamCampbell\GitHub\GitHubManager;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class ProjectsController extends Controller
 {
+
+    /**
+     * @var GitHubManager
+     */
+    private $github;
+
+    public function __construct(GitHubManager $github){
+
+        $this->github = $github;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +48,8 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->github->me()->repositories();
+
     }
 
     /**

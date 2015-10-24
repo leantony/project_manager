@@ -47,7 +47,8 @@ trait oauth2Authenticator
      *
      * @param $api
      *
-     * @return \Laravel\Socialite\Contracts\User
+     * @param array $scopes
+     * @return User
      */
     protected function getApiUser($api, array $scopes)
     {

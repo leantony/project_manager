@@ -9,18 +9,18 @@
 
     function AuthController($auth, $state) {
 
-        var vm = this;
+        var a = this;
 
-        vm.login = function () {
+        a.login = function () {
 
             var credentials = {
-                email: vm.email,
-                password: vm.password
+                email: a.email,
+                password: a.password
             };
 
             $auth.login(credentials).then(function (data) {
 
-                $state.go('users', {});
+                $state.go('projects', {});
             });
         }
 

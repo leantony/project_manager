@@ -8,7 +8,7 @@
 
             // Satellizer configuration that specifies which API
             // route the JWT should be retrieved from
-            $authProvider.loginUrl = '/auth/login';
+            $authProvider.loginUrl = '/api/v1/auth';
 
             // Redirect to the auth state if any other states
             // are requested other than users
@@ -17,13 +17,13 @@
             $stateProvider
                 .state('auth', {
                     url: '/auth',
-                    templateUrl: '../views/authView.html',
+                    templateUrl: '../views/login.html',
                     controller: 'AuthController as auth'
                 })
-                .state('users', {
-                    url: '/users',
-                    templateUrl: '../views/userView.html',
-                    controller: 'UserController as user'
+                .state('projects', {
+                    url: '/projects',
+                    templateUrl: '../views/projects.html',
+                    controller: 'ProjectsController as projects'
                 });
         });
 })();

@@ -22,11 +22,11 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "app/Acme"
         ],
         "psr-4": {
-            "App\\": "app/",
-            "Antony\\" : "Antony/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

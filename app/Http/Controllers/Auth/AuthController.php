@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use app\Antony\DomainLogic\Modules\Authentication\AppAuthenticator;
+use app\Acme\Authentication\AppAuthenticator;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLogin;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class AuthController extends Controller
      */
     public function __construct(AppAuthenticator $authenticateUser, Request $request)
     {
-        $this->middleware('jwt.auth', ['except' => 'LoginViaAPI']);
+        $this->middleware('jwt.auth', ['except' => 'LoginViaAPI', 'getLogin']);
 
         $this->auth = $authenticateUser;
         $this->request = $request;

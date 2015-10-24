@@ -1,6 +1,5 @@
-<?php namespace app\Antony\DomainLogic\Authentication;
+<?php namespace app\Acme\Authentication;
 
-use app\Antony\DomainLogic\Authentication\Traits\oauth2Authenticator;
 use App\models\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Session\Store;

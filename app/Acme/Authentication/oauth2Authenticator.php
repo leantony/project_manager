@@ -3,6 +3,7 @@
 use App\Http\Requests\ApiRegistration;
 use App\models\User as UserRepo;
 use Illuminate\Http\Request;
+use JWTAuth;
 use Laravel\Socialite\Contracts\User;
 
 /**
@@ -110,6 +111,7 @@ trait oauth2Authenticator
 
         if (empty($user)) {
 
+            // means user doesn't exist on our server
             if ($createNew) {
 
                 // store the user api data in the session, then allow them to fill other fields prior to their account creation
@@ -122,10 +124,7 @@ trait oauth2Authenticator
 
         } else {
 
-            // login the user
-            $this->auth->login($user, true);
-
-            return redirect()->intended(session('url.intended', '/'));
+            return $this->generateWebToken($user);
         }
     }
 
@@ -139,11 +138,9 @@ trait oauth2Authenticator
     {
         $user = (new UserRepo())->createUserUsingDataFromAPI($request->getSession()->get('api_user_data'), $request->all());
 
-        auth()->login($user, true);
+        return $this->generateWebToken($user);
 
-        app('session')->pull('api_user_data');
-
-        return redirect()->intended(session('url.intended', '/'));
+        //return redirect()->intended(session('url.intended', '/'));
     }
 
     /**
@@ -200,5 +197,23 @@ trait oauth2Authenticator
         return $request->getSession()->has('api_user_data')
             ? $this->createAccount($request)
             : redirect()->route('auth.login');
+    }
+
+    /**
+     * Makes a token for the user, to be sent to the angular end
+     *
+     * @param $user
+     * @return string
+     */
+    private function generateWebToken(UserRepo $user)
+    {
+        // make a JWT
+        $jwt = JWTAuth::fromUser($user);
+
+        //auth()->login($user, true);
+
+        app('session')->pull('api_user_data');
+
+        return json_encode(['user' => $user, 'token' => $jwt]);
     }
 }

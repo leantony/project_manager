@@ -202,8 +202,8 @@ trait oauth2Authenticator
     /**
      * Makes a token for the user, to be sent to the angular end
      *
-     * @param $user
-     * @return string
+     * @param UserRepo $user
+     * @return \Illuminate\Http\JsonResponse
      */
     private function generateWebToken(UserRepo $user)
     {
@@ -214,6 +214,6 @@ trait oauth2Authenticator
 
         app('session')->pull('api_user_data');
 
-        return json_encode(['user' => $user, 'token' => $jwt]);
+        return response()->json(compact('user', 'jwt'));
     }
 }

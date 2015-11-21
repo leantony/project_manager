@@ -98,27 +98,6 @@ class AppAuthenticator
     }
 
     /**
-     * @param array $credentials
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function generateWebToken(array $credentials)
-    {
-
-        try {
-            // verify the credentials and create a token for the user
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Invalid credentials provided'], 401);
-            }
-        } catch (JWTException $e) {
-            // something went wrong
-            return response()->json(['error' => 'OOps something happened'], 500);
-        }
-
-        // if no errors are encountered we can return a JWT
-        return response()->json(compact('token'));
-    }
-
-    /**
      * Log out a user.
      *
      */

@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.4.7",
+    "angular-messages": "^1.4.8",
+    "angular-route": "^1.4.7",
     "angular-ui-router": "^0.2.15",
     "satellizer": "^0.12.5"
   }

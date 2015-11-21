@@ -110,6 +110,7 @@ return [
 
     'providers' => [
 
+        Dingo\Api\Provider\LaravelServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -149,7 +150,6 @@ return [
          * Vendor
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Dingo\Api\Provider\LaravelServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class

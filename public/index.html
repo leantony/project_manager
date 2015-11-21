@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="project-mgr">
+<head>
+    <meta charset="utf-8">
+    <title>Laravel Project manager App</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/paper/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <a href="#/" class="navbar-brand"><i class="fa fa-github"></i> Github project manager</a>
+            <li><a href="#/">Home</a></li>
+            <li ng-if="isLoggedIn"><a href="#/projects">Projects</a></li>
+            <li ng-if="!isLoggedIn"><a href="#/login">Log in</a></li>
+            <li ng-if="!isLoggedIn"><a href="#/signup">Sign up</a></li>
+            <li ng-if="isLoggedIn"><a ng-click="logout()" href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div ng-view></div>
+</div>
+
+
+</body>
+
+
+<script src="node_modules/angular/angular.js"></script>
+<script src="node_modules/angular-route/angular-route.js"></script>
+<!--<script src="../node_modules/angular-ui-router/build/angular-ui-router.js"></script>-->
+<script src="node_modules/satellizer/satellizer.js"></script>
+<!--<script src="node_modules/angular-messages/angular-messages.js"></script>-->
+
+<script src="app/app.js"></script>
+<script src="app/controllers/Auth.js"></script>
+<script src="app/controllers/Home.js"></script>
+<script src="app/controllers/Projects.js"></script>
+<script src="app/controllers/SignUp.js"></script>
+<script src="app/directives/serverError.js"></script>
+</html>

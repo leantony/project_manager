@@ -1,26 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\projects;
+namespace App\Acme\Api\v1;
 
+use app\Acme\Github\GithubProjectManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\models\Projects;
-use App\models\UserProjects;
-use GrahamCampbell\GitHub\GitHubManager;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
-
     /**
-     * @var GitHubManager
+     * @var GithubProjectManager
      */
     private $github;
 
-    public function __construct(GitHubManager $github)
+    public function __construct(GithubProjectManager $github)
     {
 
         $this->github = $github;
+    }
+
+    public function mine()
+    {
+
     }
 
     /**
@@ -30,37 +32,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $data = $this->github->me()->repositories();
-
-        foreach ($data as $value) {
-            $p_name = array_get($value, 'name');
-            $p_slug = array_get($value, 'full_name');
-            $p_desc = array_get($value, 'description');
-            $p_owner = array_get(array_get($value, 'owner'), 'login');
-
-            $project = Projects::create([
-                'name' => $p_name,
-                'slug' => $p_slug,
-                'description' => $p_desc
-            ]);
-
-            $collaborators = $this->github->getHttpClient()->get("/repos/{$p_owner}/{$p_name}/collaborators")->json();
-
-            foreach ($collaborators as $project_user) {
-
-                UserProjects::create([
-                    'project_id' => $project->id,
-                    'email' => array_get($project_user, 'email'),
-                    'username' => array_get($project_user, 'login')
-                ]);
-            }
-
-        }
-
-        $projects = Projects::all();
-
-        return view('projects.view', compact('projects'));
-
+        return $this->github->getAllProjects();
     }
 
     /**
@@ -81,8 +53,7 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->github->me()->repositories();
-
+        //
     }
 
     /**
